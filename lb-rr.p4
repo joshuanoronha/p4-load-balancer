@@ -114,7 +114,7 @@ control MyIngress(inout headers hdr,
               hdr.tcp.dstPort },
             ecmp_count);
     }
-    action set_random_select(bit<14> random_low, bit<14> random_high) {
+    action set_random_select(bit<32> random_low, bit<32> random_high) {
       random(meta.pselect, random_low, random_high);
     }
 
