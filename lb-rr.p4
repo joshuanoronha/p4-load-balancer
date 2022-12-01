@@ -120,14 +120,14 @@ control MyIngress(inout headers hdr,
 
     action set_round_robin() {
       rr_turn.read(meta.rr_select, 0);
-      temp bit<32> = 1
+      bit<32> temp;
       if (meta.rr_select == 0) {
         meta.pselect = meta.rr_select;
-        temp = 0
+        temp = 0;
       }
       else {
         meta.pselect = meta.rr_select;
-        temp = 1
+        temp = 1;
       }
         rr_turn.write(meta.rr_select, temp);
 
