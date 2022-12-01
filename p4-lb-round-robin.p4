@@ -100,8 +100,9 @@ control MyVerifyChecksum(inout headers hdr, inout metadata meta) {
 control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
-    bit<32> round_robin = 1;
+    register <bit<14>>(1) rr_turn;
 
+    
     action drop() {
         mark_to_drop(standard_metadata);
     }
@@ -117,9 +118,11 @@ control MyIngress(inout headers hdr,
             ecmp_count);
     }
     action set_rr_select() {
-        if (meta.ecmp_count == 0){
+        if (meta.ecmp_count == 0) {
+            round_robin_reg.read(, index)
             meta.ecmp_count = 1
-        } else {
+        } 
+        else {
             meta.ecmp_count = 0
         }
     }
