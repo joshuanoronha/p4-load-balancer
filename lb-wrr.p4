@@ -118,7 +118,6 @@ control MyIngress(inout headers hdr,
     action set_round_robin() {
       rr_turn.read(meta.rr_select, 0);
       bit<32> thresh = 3;
-      random(randnum, 1, 10);
 
       if (meta.rr_select > thresh) {
         meta.pselect = 0;
