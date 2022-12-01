@@ -42,8 +42,8 @@ header tcp_t {
 }
 
 struct metadata {
-    bit<14> pselect;
-    bit<14> rr_select;
+    bit<32> pselect;
+    bit<32> rr_select;
 }
 
 struct headers {
