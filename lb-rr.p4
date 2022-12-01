@@ -99,7 +99,7 @@ control MyVerifyChecksum(inout headers hdr, inout metadata meta) {
 control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
-    register <bit<14>>(1) rr_turn;
+    register <bit<32>>(1) rr_turn;
     action drop() {
         mark_to_drop(standard_metadata);
     }
