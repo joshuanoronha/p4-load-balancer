@@ -120,14 +120,17 @@ control MyIngress(inout headers hdr,
 
     action set_round_robin() {
       rr_turn.read(meta.rr_select, 0);
+      temp bit<32> = 1
       if (meta.rr_select == 0) {
         meta.pselect = meta.rr_select;
-        rr_turn.write(meta.rr_select, 1);
+        temp = 0
       }
       else {
         meta.pselect = meta.rr_select;
-        rr_turn.write(meta.rr_select, 0);
+        temp = 1
       }
+        rr_turn.write(meta.rr_select, temp);
+
     }
     action set_nhop(bit<48> nhop_dmac, bit<32> nhop_ipv4, bit<9> port) {
         hdr.ethernet.dstAddr = nhop_dmac;
