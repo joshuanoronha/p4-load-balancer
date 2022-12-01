@@ -143,7 +143,6 @@ control MyIngress(inout headers hdr,
             drop;
             set_ecmp_select;
             set_round_robin;
-            set_random_select;
         }
         size = 1024;
     }
