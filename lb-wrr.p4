@@ -118,7 +118,6 @@ control MyIngress(inout headers hdr,
     action set_round_robin() {
       rr_turn.read(meta.rr_select, 0);
       bit<32> thresh = 3;
-      bit<32> randnum;
       random(randnum, 1, 10);
 
       if (meta.rr_select > thresh) {
@@ -127,6 +126,7 @@ control MyIngress(inout headers hdr,
       else {
         meta.pselect = 1;
       }
+        bit<32> temp = meta.rr_select + 1;
         rr_turn.write(meta.rr_select, temp);
     }
     action set_nhop(bit<48> nhop_dmac, bit<32> nhop_ipv4, bit<9> port) {
