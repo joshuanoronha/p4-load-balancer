@@ -117,11 +117,10 @@ control MyIngress(inout headers hdr,
             ecmp_count);
     }
     action set_rr_select() {
-        if (round_robin == 1){
-            meta.ecmp_count = 0
-            round_robin = 0
-        } else {
+        if (meta.ecmp_count == 0){
             meta.ecmp_count = 1
+        } else {
+            meta.ecmp_count = 0
         }
     }
     action set_nhop(bit<48> nhop_dmac, bit<32> nhop_ipv4, bit<9> port) {
